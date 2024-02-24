@@ -1,9 +1,12 @@
 from flask import Flask,request
 from flask_restful import reqparse, abort, Api, Resource
+from flask_cors import CORS
+
 
 app = Flask(__name__)
 api = Api(app)
-parser = reqparse.RequestParser()
+CORS(app)
+
 class RecommendResume(Resource):
     def get(self):
         request_data = request.get_json()
@@ -16,4 +19,4 @@ class RecommendResume(Resource):
 api.add_resource(RecommendResume, '/')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
